@@ -14,8 +14,8 @@ tabtitle='beer!'
 myheading='Irina'
 label1='IBU'
 label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
-sourceurl='https://www.flyingdog.com/beers/'
+githublink='https://github.com/Aeelen-Miranda/flying-dog-beers'
+sourceurl='https://dash.plotly.com/dash-core-components/graph'
 
 ########### Set up the chart
 bitterness = go.Bar(
