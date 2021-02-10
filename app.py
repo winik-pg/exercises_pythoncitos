@@ -57,21 +57,6 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-    html.Div(children = [ 
-    dbc.NavbarSimple(
-        children=[
-        dbc.NavItem(dbc.NavLink("Web Portal",
-                                style={'textAlign': 'center','color': colors['text']},
-                                       href="https://plotly.com/python/figure-labels/")),
-        ],
-        brand="Analytics Dashboard",
-        brand_href="https://matplotlib.org/gallery/api/font_family_rc_sgskip.html",
-        color="#E3E4E5",
-        dark=True,)],
-        style={'textAlign': 'center','color': colors['text'],
-               'font-family': 'Montserrat', 'font-weight': 'bold','width': '100%',},
-        ),
-    
     html.Div( children = [dcc.Graph(id='flyingdog',
         figure=beer_fig
     ),
