@@ -3,6 +3,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
+import numpy as np
+
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -86,6 +88,20 @@ fig.append_trace(trace4, 3, 1)
 fig.append_trace(trace5, 3, 2)
 
 #fig.show()
+###############################Cuatro
+
+
+x0 = np.random.randn(2000)
+x1 = np.random.randn(2000) + 1
+
+cuatro = go.Figure()
+cuatro.add_trace(go.Histogram(x=x0))
+cuatro.add_trace(go.Histogram(x=x1))
+
+# The two histograms are drawn on top of another
+cuatro.update_layout(barmode='stack')
+#fig.show()
+
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -101,6 +117,8 @@ app.layout = html.Div(children=[
     html.Div(children = [dcc.Graph(figure=beer_fig)]),
     html.Div(children = [dcc.Graph(figure=histograma)]),
     html.Div(children = [dcc.Graph(figure=fig)]),
+     
+    html.Div(children = [dcc.Graph(figure=cuatro)]),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl)
