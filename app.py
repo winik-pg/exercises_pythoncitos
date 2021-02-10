@@ -43,6 +43,10 @@ beer_fig = go.Figure(data=beer_data, layout=beer_layout)
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+colors = {
+    'background': '#111111',
+    'text': '#C0C0C0'
+}
 server = app.server
 app.title=tabtitle
 
@@ -57,7 +61,10 @@ app.layout = html.Div(children=[
     html.Br(),
     html.A('Data Source', href=sourceurl),
     ]
-)
+),style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
+        'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
+                     # dark=True,
+                     )
 
 if __name__ == '__main__':
     app.run_server()
