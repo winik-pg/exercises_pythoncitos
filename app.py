@@ -11,7 +11,7 @@ color1='darkred'
 color2='orange'
 mytitle='Beer Comparison'
 tabtitle='beer!'
-myheading='Flying Dog Beers'
+myheading='Irina'
 label1='IBU'
 label2='ABV'
 githublink='https://github.com/austinlasseter/flying-dog-beers'
@@ -39,7 +39,12 @@ beer_layout = go.Layout(
 
 beer_fig = go.Figure(data=beer_data, layout=beer_layout)
 
-
+####################dos
+histograma = go.Figure(data=[go.Scatter(x=[1, 2, 3], y=[4, 1, 2])])
+dcc.Graph(
+        id='example-graph-2',
+        figure=histograma
+    )
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -52,11 +57,27 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-    html.H1(myheading),
-    dcc.Graph(
-        id='flyingdog',
+    html.Div(children = [ 
+    dbc.NavbarSimple(
+        children=[
+        dbc.NavItem(dbc.NavLink("Web Portal",
+                                style={'textAlign': 'center','color': colors['text']},
+                                       href="https://plotly.com/python/figure-labels/")),
+        ],
+        brand="Analytics Dashboard",
+        brand_href="https://matplotlib.org/gallery/api/font_family_rc_sgskip.html",
+        color="#E3E4E5",
+        dark=True,)],
+        style={'textAlign': 'center','color': colors['text'],
+               'font-family': 'Montserrat', 'font-weight': 'bold','width': '100%',},
+        ),
+    
+    html.Div( children = [dcc.Graph(id='flyingdog',
         figure=beer_fig
     ),
+    html.Div( children = [dcc.Graph(id='example-graph-2',
+        figure=histograma
+    ),                      
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl),
