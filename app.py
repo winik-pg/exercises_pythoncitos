@@ -7,18 +7,18 @@ import numpy as np
 
 
 ########### Define your variables
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
+beers=['uno', 'dos', 'tres', 'Cuatro']
 ibu_values=[35, 60, 85, 75]
 abv_values=[5.4, 7.1, 9.2, 4.3]
 color1='darkred'
 color2='orange'
-mytitle='Beer Comparison'
-tabtitle='beer!'
+mytitle='Añadir graficas'
+tabtitle='weed!'
 myheading='Irina'
 label1='IBU'
 label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
-sourceurl='https://www.flyingdog.com/beers/'
+githublink='https://github.com/Aeelen-Miranda/flying-dog-beers'
+sourceurl='https://plotly.com/python/histograms/'
 
 ########### Set up the chart
 bitterness = go.Bar(
