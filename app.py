@@ -2,6 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
+from plotly.subplots import make_subplots
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -9,13 +10,13 @@ ibu_values=[35, 60, 85, 75]
 abv_values=[5.4, 7.1, 9.2, 4.3]
 color1='darkred'
 color2='orange'
-mytitle='Añadir graficas'
-tabtitle='irimiri!'
+mytitle='Beer Comparison'
+tabtitle='beer!'
 myheading='Irina'
 label1='IBU'
 label2='ABV'
-githublink='https://github.com/Aeelen-Miranda/flying-dog-beers'
-sourceurl='https://dash.plotly.com/dash-core-components/graph'
+githublink='https://github.com/austinlasseter/flying-dog-beers'
+sourceurl='https://www.flyingdog.com/beers/'
 
 ########### Set up the chart
 bitterness = go.Bar(
@@ -45,6 +46,46 @@ dcc.Graph(
         id='example-graph-2',
         figure=histograma
     )
+#######################tres
+
+x = ['1970-01-01', '1970-01-01', '1970-02-01', '1970-04-01', '1970-01-02',
+     '1972-01-31', '1970-02-13', '1971-04-19']
+
+fig = make_subplots(rows=3, cols=2)
+
+trace0 = go.Histogram(x=x, nbinsx=4)
+trace1 = go.Histogram(x=x, nbinsx = 8)
+trace2 = go.Histogram(x=x, nbinsx=10)
+trace3 = go.Histogram(x=x,
+                      xbins=dict(
+                      start='1969-11-15',
+                      end='1972-03-31',
+                      size='M18'), # M18 stands for 18 months
+                      autobinx=False
+                     )
+trace4 = go.Histogram(x=x,
+                      xbins=dict(
+                      start='1969-11-15',
+                      end='1972-03-31',
+                      size='M4'), # 4 months bin size
+                      autobinx=False
+                      )
+trace5 = go.Histogram(x=x,
+                      xbins=dict(
+                      start='1969-11-15',
+                      end='1972-03-31',
+                      size= 'M2'), # 2 months
+                      autobinx = False
+                      )
+
+fig.append_trace(trace0, 1, 1)
+fig.append_trace(trace1, 1, 2)
+fig.append_trace(trace2, 2, 1)
+fig.append_trace(trace3, 2, 2)
+fig.append_trace(trace4, 3, 1)
+fig.append_trace(trace5, 3, 2)
+
+#fig.show()
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -58,7 +99,8 @@ app.title=tabtitle
 ########### Set up the layout
 app.layout = html.Div(children=[
     html.Div(children = [dcc.Graph(figure=beer_fig)]),
-    html.Div(children = [dcc.Graph(figure=histograma)]),                      
+    html.Div(children = [dcc.Graph(figure=histograma)]),
+    html.Div(children = [dcc.Graph(figure=fig)]),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl)
