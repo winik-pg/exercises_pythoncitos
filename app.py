@@ -60,8 +60,7 @@ app.layout = html.Div(children=[
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl),
-    ]
-),style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
+    ],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
         'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
                      # dark=True,
                      )
