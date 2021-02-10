@@ -102,6 +102,14 @@ cuatro.add_trace(go.Histogram(x=x1))
 cuatro.update_layout(barmode='stack')
 #fig.show()
 
+####################!!!!! Cinco
+colors = ['gold', 'mediumturquoise', 'darkorange', 'lightgreen']
+
+pay = go.Figure(data=[go.Pie(labels=['Oxygen','Hydrogen','Carbon_Dioxide','Nitrogen'],
+                             values=[4500,2500,1053,500])])
+pay.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                  marker=dict(colors=colors, line=dict(color='#000000', width=2)))
+
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -117,8 +125,8 @@ app.layout = html.Div(children=[
     html.Div(children = [dcc.Graph(figure=beer_fig)]),
     html.Div(children = [dcc.Graph(figure=histograma)]),
     html.Div(children = [dcc.Graph(figure=fig)]),
-     
     html.Div(children = [dcc.Graph(figure=cuatro)]),
+    html.Div(children = [dcc.Graph(figure=pay)]),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl)
