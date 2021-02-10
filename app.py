@@ -57,19 +57,16 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-    html.Div( children = [dcc.Graph(id='flyingdog',
-        figure=beer_fig
-    ),
-    html.Div( children = [dcc.Graph(id='example-graph-2',
-        figure=histograma
-    ),                      
+    html.Div(children = [dcc.Graph(figure=beer_fig)]),
+    html.Div(children = [dcc.Graph(figure=histograma)]),                      
     html.A('Code on Github', href=githublink),
     html.Br(),
-    html.A('Data Source', href=sourceurl),
-    ],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
-        'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
-                     # dark=True,
+    html.A('Data Source', href=sourceurl)
+    
+],
                      )
+    
+                     
 
 if __name__ == '__main__':
     app.run_server()
