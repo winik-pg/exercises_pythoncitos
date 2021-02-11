@@ -1,0 +1,16 @@
+,Municipio,Tipo de delito,ene-20,feb-20,mar-20,abr-20,may-20,jun-20,jul-20,ago-20,sep-20,Grado,Estatus,hrs_caso
+0,Fresnillo,Robo,177,153,194,121,105,110,131,98,87,1,atendido,132
+1,Fresnillo,Violencia familiar,64,74,80,79,60,116,74,117,93,2,no atendido,115
+2,Fresnillo,Lesiones,51,48,52,52,31,65,29,45,45,1,atendido,564
+3,Fresnillo,Otros delitos del Fuero Común,28,34,30,20,16,33,37,30,30,1,atendido,21
+4,Fresnillo,Daño a la propiedad,24,33,29,30,25,49,31,30,33,2,no atendido,35
+5,Guadalupe,Robo,140,121,91,62,71,94,99,98,103,1,no atendido,211
+6,Guadalupe,Violencia familiar,48,40,72,67,82,77,68,63,41,2,no atendido,58
+7,Guadalupe,Daño a la propiedad,40,33,35,17,27,30,19,27,38,2,atendido,89
+8,Guadalupe,Otros delitos del Fuero Común,32,16,22,14,27,27,27,20,34,2,no atendido,487
+9,Guadalupe,Lesiones,27,31,30,36,35,30,40,41,41,2,no atendido,325
+10,Zacatecas,Robo,145,123,104,66,77,87,119,107,102,1,no atendido,25
+11,Zacatecas,Daño a la propiedad,51,53,41,20,22,39,25,33,28,1,no atendido,132
+12,Zacatecas,Violencia familiar,47,36,52,36,51,59,49,53,46,2,atendido,5
+13,Zacatecas,Fraude,34,31,26,13,13,20,22,25,35,2,atendido,78
+14,Zacatecas,Amenazas,31,24,23,9,21,26,14,17,23,1,atendido,5
