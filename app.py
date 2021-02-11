@@ -4,7 +4,18 @@ import dash_html_components as html
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 import numpy as np
+import pandas as pd
 
+zacatecas = pd.read_csv('https://raw.githubusercontent.com/Aeelen-Miranda/flying-dog-beers/master/Tabla%202.%20Delitos%20Zacatecas%20(2020)_2.csv', )
+pv = pd.pivot_table(zacatecas, index=['Municipio'], columns=['Tipo de delito'], values=['ene-20'],aggfunc=sum, fill_value = 0)
+
+g1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Robo')], name = 'ROBO')
+gr1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Violencia familiar')], name = 'VIOLENCIA FAMILIAR')
+gra1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Lesiones')], name = 'LESIONES')
+graf1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Otros delitos del Fuero Común')], name = 'OTROS DELITOS DEL FUERO COMÚN')
+grafi1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Daño a la propiedad')], name = 'DAÑO A LA PROPIEDAD')
+grafic1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Fraude')], name = 'FRAUDE')
+grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'AMENAZAS')
 
 ########### Define your variables
 beers=['uno', 'dos', 'tres', 'Cuatro']
@@ -127,6 +138,15 @@ app.layout = html.Div(children=[
     html.Div(children = [dcc.Graph(figure=fig)]),
     html.Div(children = [dcc.Graph(figure=cuatro)]),
     html.Div(children = [dcc.Graph(figure=pay)]),
+    html.Div( children = [dcc.Graph(id='grafica1',
+              figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
+                       'layout': go.Layout(paper_bgcolor='black', #color de fondo
+                                           plot_bgcolor='black',
+                                           title='Mayor incidencia delictiva',
+                                           barmode='group')})],
+             style = {'margin': '1% 0px 0px 0px', 'width':'60%',
+                     'font-family': 'Montserrat',#Cambia tipo de letra
+                    }),
     html.A('Code on Github', href=githublink),
     html.Br(),
     html.A('Data Source', href=sourceurl)
