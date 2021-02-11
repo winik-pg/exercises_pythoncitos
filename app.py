@@ -140,8 +140,8 @@ app.layout = html.Div(children=[
     html.Div(children = [dcc.Graph(figure=pay)]),
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
-                       'layout': go.Layout(paper_bgcolor='black', #color de fondo
-                                           plot_bgcolor='black',
+                       'layout': go.Layout(paper_bgcolor='white', #color de fondo
+                                           plot_bgcolor='white',
                                            title='Mayor incidencia delictiva',
                                            barmode='group')})],
              style = {'margin': '1% 0px 0px 0px', 'width':'60%',
