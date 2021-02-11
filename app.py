@@ -2,7 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
-#import plotly.express as px
+import plotly.express as px
 from plotly.subplots import make_subplots
 import numpy as np
 import pandas as pd
@@ -24,19 +24,19 @@ grafic1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Fraude')], name = 'Fraude')
 grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'Amenazas')
 
 ################################## Grafica 2
-#grafica2 = px.line(covid, x = covid['nom_mun'], y = covid['quincena0'])
-#grafica2.update_traces(orientation = 'v')
-#grafica2.update_layout(font_family="Montserrat",title = '<b>Quincena 0</b>',
-#                       template = 'plotly_dark',title_font_family="Montserrat",
-#                       title_font_color="goldenrod",)
+grafica2 = px.line(covid, x = covid['nom_mun'], y = covid['quincena0'])
+grafica2.update_traces(orientation = 'v')
+grafica2.update_layout(font_family="Montserrat",title = '<b>Quincena 0</b>',
+                       template = 'plotly_dark',title_font_family="Montserrat",
+                       title_font_color="goldenrod",)
 #################################### Grafica 3
-#grafica3 = px.line(covid, x = covid['nom_mun'], y = covid['quincena2'])
-#grafica3.update_traces(orientation = 'v')
-#grafica3.update_layout(font_family="Montserrat",
-#                       title = '<b>Quincena 2</b>',
-#                       template = 'plotly_dark',
-#                       title_font_family="Montserrat",
-#                       title_font_color="goldenrod",)
+grafica3 = px.line(covid, x = covid['nom_mun'], y = covid['quincena2'])
+grafica3.update_traces(orientation = 'v')
+grafica3.update_layout(font_family="Montserrat",
+                       title = '<b>Quincena 2</b>',
+                       template = 'plotly_dark',
+                       title_font_family="Montserrat",
+                       title_font_color="goldenrod",)
 ################################### Grafica 4
 #grafica4 = px.line(covid, x = covid['nom_mun'], y = covid['quincena3'])
 #grafica4.update_traces(orientation = 'v')
@@ -280,14 +280,14 @@ app.layout = html.Div(children=[
              style = {'margin': '1% 0px 0px 0px', 'width':'60%',
                      'font-family': 'Montserrat',#Cambia tipo de letra
                     }),
-   # html.Div(children =[dcc.Graph(figure=grafica2)],
-   #          style={'margin': '2% 0px 0px 1px', 'width':'22%',
-   #                'font-family': 'Montserrat',
-   #                'backgroundColor': colors['background']}),
-   # html.Div(children = [dcc.Graph(figure=grafica3)],
-   #         style={'margin': '2% 0px 0px 1px', 'width':'22%',
-   #               'font-family': 'Montserrat',
-   #               'backgroundColor': colors['background']}),
+    html.Div(children =[dcc.Graph(figure=grafica2)],
+             style={'margin': '2% 0px 0px 1px', 'width':'22%',
+                   'font-family': 'Montserrat',
+                   'backgroundColor': colors['background']}),
+    html.Div(children = [dcc.Graph(figure=grafica3)],
+            style={'margin': '2% 0px 0px 1px', 'width':'22%',
+                  'font-family': 'Montserrat',
+                  'backgroundColor': colors['background']}),
    # html.Div(children =[dcc.Graph(figure=grafica4)],
    #          style={'margin': '2% 0px 0px 1px', 'width':'22%',
    #                'font-family': 'Montserrat',
