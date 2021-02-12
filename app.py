@@ -170,7 +170,7 @@ app.title=tabtitle
 ########### Set up the layout
 app.layout = html.Div(children=[
     
-    html.Div(children = [ dcc.Markdown(
+     html.Div(children = [ dcc.Markdown(
         ''' 
     #Prueba de Dashboard
     ## prueba sobre delitos
@@ -180,7 +180,10 @@ app.layout = html.Div(children=[
                   'textAlign': 'center','color': colors['text'],'width': '100%'}
         ),
      
-    
+    html.H1( children='Hello Dash',
+        style={
+            'textAlign': 'center',
+            'color': colors['text']}),
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
                        'layout': go.Layout(paper_bgcolor='black', #color de fondo
