@@ -67,7 +67,7 @@ grafica6.update_layout(font_family="Montserrat", #Tipo de letra del contenido de
                       #line_color= "dark"
                       ) #Con esto se cambia color letra
 grafica6.update_xaxes(title_font_family="Montserrat") #Tipo de letra de x,y
-############################################ Grafica 8
+########################################### Grafica 8
 grafica8 = px.scatter(covid, x='Total', y='nom_mun', size='Total', 
                       color='quincena6', title = '<b>Incidencia delictiva en alcaldias</b>',
                      template = "plotly_dark",
@@ -85,7 +85,7 @@ grafica8.update_layout(
 grafica8.update_xaxes(title_font_family="Montserrat")
 #PRIMEr paso
 
-########################################### Grafica 9
+############################################ Grafica 9
 eindex = covid[['nom_mun','Total' ,'quincena0', 'quincena2',
        'quincena3', 'quincena4', 'quincena5', 'quincena6']]
 
@@ -107,7 +107,8 @@ grafica9.add_trace(go.Bar(
     y=eindexx.quincena0.values,
     x=eindexx.index,
     name='quincena0',
-    marker_color='#572364'
+    marker_color='#572364',
+     
 ))
 
 grafica9.add_trace(go.Bar(
@@ -148,6 +149,7 @@ grafica9.update_layout(title = '<b>9. Delitos totales por Alcaldía</b>',
                        
                  template='plotly_dark')
 ####################################################################################
+########### Define your variables
 
 mytitle='Añadir graficas'
 tabtitle='Prueba Dash!'
@@ -155,8 +157,8 @@ githublink='https://github.com/Aeelen-Miranda/flying-dog-beers'
 sourceurl='https://plotly.com/python/histograms/'
 
 
+
 ########### Initiate the app
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash()
 colors = {
     'background': '#111111',
@@ -167,7 +169,18 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-
+    
+    html.Div(children = [ dcc.Markdown(
+        ''' 
+    #Prueba de Dashboard
+    ## prueba sobre delitos
+    ###### jueves 11 de febrero de 2020
+''',
+         )],style={'font-family': 'Montserrat',# 'sans-serif',
+                  'textAlign': 'center','color': colors['text'],'width': '100%'}
+        ),
+     
+    
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
                        'layout': go.Layout(paper_bgcolor='black', #color de fondo
@@ -177,16 +190,16 @@ app.layout = html.Div(children=[
              style = {'margin': '1% 0px 0px 0px', 'width':'60%',
                      'font-family': 'Montserrat',#Cambia tipo de letra
                     }),
-    html.Div(children =[dcc.Graph(figure=grafica2)],
-             style={'margin': '2% 0px 0px 1px', 'width':'22%',
-                   'font-family': 'Montserrat',
-                   'backgroundColor': colors['background']}),
-    html.Div(children = [dcc.Graph(figure=grafica3)],
-            style={'margin': '2% 0px 0px 1px', 'width':'22%',
+   html.Div(children =[dcc.Graph(figure=grafica2)],
+            style={'margin': '2% 0px 0px 1px', 'width':'50%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
-   html.Div(children =[dcc.Graph(figure=grafica4)],
-             style={'margin': '2% 0px 0px 1px', 'width':'22%',
+   html.Div(children = [dcc.Graph(figure=grafica3)],
+           style={'margin': '2% 0px 0px 1px', 'width':'50%',
+                 'font-family': 'Montserrat',
+                 'backgroundColor': colors['background']}),
+    html.Div(children =[dcc.Graph(figure=grafica4)],
+             style={'margin': '2% 0px 0px 1px', 'width':'50%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
     html.Div(children = [dcc.Graph(figure=grafica5)],
@@ -194,15 +207,14 @@ app.layout = html.Div(children=[
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
     
-#tercera franja
     html.Div(children =[dcc.Graph(figure=grafica6)],
              style={'margin': '3% 0px 0px 0px', 'width':'100%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
     html.Div(children =[dcc.Graph(figure=grafica8)],
-             style={'margin': '2% 0px 0px 0px', 'width':'60%',
-                   'font-family': 'Montserrat',
-                   'backgroundColor': colors['background']}),
+            style={'margin': '2% 0px 0px 0px', 'width':'60%',
+                  'font-family': 'Montserrat',
+                  'backgroundColor': colors['background']}),
 
 #quinta franja
     html.Div(children = [dcc.Graph(figure=grafica9)],
@@ -213,9 +225,12 @@ app.layout = html.Div(children=[
     html.Br(),
     html.A('Data Source', href=sourceurl)
     
-],
+],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
+        'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
+                     # dark=True,
                      )
                      
 
 if __name__ == '__main__':
     app.run_server()
+
