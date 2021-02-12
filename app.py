@@ -188,7 +188,8 @@ app.layout = html.Div(children=[
                                            title='Mayor incidencia delictiva',
                                            barmode='group')})],
              style = {'margin': '1% 0px 0px 0px', 'width':'60%',
-                     'font-family': 'Montserrat',#Cambia tipo de letra
+                     'font-family': 'Montserrat', 
+                      'fontColor': 'white' #Cambia tipo de letra
                     }),
    html.Div(children =[dcc.Graph(figure=grafica2)],
             style={'margin': '2% 0px 0px 1px', 'width':'50%',
@@ -233,4 +234,3 @@ app.layout = html.Div(children=[
 
 if __name__ == '__main__':
     app.run_server()
-
