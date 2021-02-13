@@ -220,23 +220,23 @@ app.layout = html.Div(children=[
                    'backgroundColor': colors['background']}),
   
     html.Div(children = [dcc.Graph(figure=grafica5)],
-            style={'margin': '2% 0px 0px 0px', 'width':'22%',
+            style={'margin': '2% 0px 0px 0px', 'width':'20%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
     
     html.Div(children =[dcc.Graph(figure=grafica6)],
-             style={'margin': '3% 0px 0px 0px', 'width':'100%',
+             style={'margin': '2% 0px 0px 0px', 'width':'20%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
   
     html.Div(children =[dcc.Graph(figure=grafica8)],
-            style={'margin': '4% 0px 0px 0px', 'width':'40%',
+            style={'margin': '4% 0px 0px 0px', 'width':'43%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
 
 #quinta franja
     html.Div(children = [dcc.Graph(figure=grafica9)],
-            style={'margin': '4% 0px 0px 0px', 'width':'40%',
+            style={'margin': '4% 0px 0px 0px', 'width':'43%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
   
