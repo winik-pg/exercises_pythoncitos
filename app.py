@@ -257,24 +257,20 @@ app.layout = html.Div(children=[
         ),
      
 
-##########    
-            #html.Div([Header(app)]),
-            # page 1
-            #html.Div(
-            #    [
-                    # Row 3
+############################################################ Resumen    
+           # Row 3
                     html.Div(children= 
                         [
                             html.Div(
                                 [
-                                    html.H2("Resumen", style={"color": '#FFBF00',
+                                    html.P("Resumen", style={"color": '#FFBF00',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
-                                                              'font_size' : 240,
-                                                             'margin': '0% 40px 10px 80px', 'width':'60%',},),
+                                                              'font_size' : 10,
+                                                             'margin': '1% 0px 0px 129px', 'width':'40%',},),
                                     
-                                    html.Br([]),
-                                    html.H1(
+                                    #html.Br([]),
+                                    html.P(
                                         "\
                                     As the industry’s first index fund for individual investors, \
                                     the Calibre Index Fund is a low-cost way to gain diversified exposure \
@@ -288,9 +284,9 @@ app.layout = html.Div(children=[
                                         style={"color": '#FFBF00',
                                               'font-family': 'Montserrat',# 'sans-serif',
                                               'textAlign': 'left',
-                                               'font_size' : 240,
+                                               'font_size' : 10,
                                                'color': colors['text'],
-                                               'margin': '0% 40px 10px 80px', 'width':'90%',
+                                               'margin': '1% 0px 0px 120px', 'width':'40%',
                   
                                               },
                                         className="row",
@@ -302,8 +298,61 @@ app.layout = html.Div(children=[
                         className="row",
                     ),
 
-##############   
+
+############################################################   resumen 2
+#quinta franja
+    html.Div(children = [dcc.Graph(figure=grafica9)],
+            style={'margin': '1% 0px 0px 120px', 'width':'40%',
+                  'font-family': 'Montserrat',
+                  'backgroundColor': colors['background']}),
+  
+
     
+############################################################   resumen 3
+
+           # Row 3
+                    html.Div(children= 
+                        [
+                            html.Div(
+                                [
+                                    html.H1("Resumen", style={"color": '#FFBF00',
+                                                                     'font-family': 'Montserrat',
+                                                                     'textAlign': 'left',
+                                                              'font_size' : 10,
+                                                             'margin': '1% 0px 0px 120px', 'width':'80%',},),
+                                    
+                                    #html.Br([]),
+                                    html.H2(
+                                        "\
+                                    As the industry’s first index fund for individual investors, \
+                                    the Calibre Index Fund is a low-cost way to gain diversified exposure \
+                                    to the U.S. equity market. The fund offers exposure to 500 of the \
+                                    largest U.S. companies, which span many different industries and \
+                                    account for about three-fourths of the U.S. stock market’s value. \
+                                    The key risk for the fund is the volatility that comes with its full \
+                                    exposure to the stock market. Because the Calibre Index Fund is broadly \
+                                    diversified within the large-capitalization market, it may be \
+                                    considered a core equity holding in a portfolio.",
+                                        style={"color": '#FFBF00',
+                                              'font-family': 'Montserrat',# 'sans-serif',
+                                              'textAlign': 'left',
+                                               'font_size' : 80,
+                                               'color': colors['text'],
+                                               'margin': '1% 0px 0px 120px', 'width':'80%',
+                  
+                                              },
+                                        #className="row",
+                                    ),
+                                ],
+                                className="product",
+                            )
+                        ],
+                        className="row",
+                    ),
+
+    
+
+   ############################################################    
     
     
     html.Div( children = [dcc.Graph(id='grafica1',
