@@ -4,6 +4,7 @@ import dash_html_components as html
 import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
+import plotly.io as pio
 import numpy as np
 import pandas as pd
 
@@ -30,7 +31,7 @@ grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'Amenazas')
 grafica2 = px.line(covid, x = covid['nom_mun'], y = covid['quincena0'])
 grafica2.update_traces(orientation = 'v')
 grafica2.update_layout(font_family="Montserrat",title = '<b>Quincena 0</b>',
-                       template = 'presentation',title_font_family="Montserrat",
+                       template = 'plotly_dark',title_font_family="Montserrat",
                        title_font_color="goldenrod",)
 
 
@@ -39,7 +40,7 @@ grafica3 = px.line(covid, x = covid['nom_mun'], y = covid['quincena2'])
 grafica3.update_traces(orientation = 'v')
 grafica3.update_layout(font_family="Montserrat",
                        title = '<b>Quincena 2</b>',
-                       template = 'presentation',
+                       template = 'plotly_dark',
                        title_font_family="Montserrat",
                        title_font_color="goldenrod",)
 
@@ -48,7 +49,7 @@ grafica3.update_layout(font_family="Montserrat",
 grafica4 = px.line(covid, x = covid['nom_mun'], y = covid['quincena3'])
 grafica4.update_traces(orientation = 'v')
 grafica4.update_layout(font_family="Montserrat",title = '<b>Quincena 3</b>',
-                      template='presentation',title_font_family="Montserrat",
+                      template='plotly_dark',title_font_family="Montserrat",
                       title_font_color="goldenrod",)
 
 
@@ -56,7 +57,7 @@ grafica4.update_layout(font_family="Montserrat",title = '<b>Quincena 3</b>',
 grafica5 = px.line(covid, x = covid['nom_mun'], y = covid['quincena4'])
 grafica5.update_traces(orientation = 'v')
 grafica5.update_layout(font_family="Montserrat",title = '<b>Quincena 4</b>',
-                      template='presentation',title_font_family="Montserrat",
+                      template='plotly_dark',title_font_family="Montserrat",
                        title_font_color="goldenrod", )
 grafica5.update_xaxes(title_font_family="Montserrat")
 
@@ -71,7 +72,7 @@ grafica6.update_traces(orientation = 'v', marker=dict(size=12,
                      
 grafica6.update_layout(font_family="Montserrat", #Tipo de letra del contenido de gráfica 
                        title = '<b>Quincena 5</b>',
-                       template='presentation',
+                       template='plotly_dark',
                       title_font_family="Montserrat", #Tipo de letra del titulo
                       title_font_color="goldenrod",
                       #line_color= "dark"
@@ -82,7 +83,7 @@ grafica6.update_xaxes(title_font_family="Montserrat") #Tipo de letra de x,y
 ########################################### Grafica 8
 grafica8 = px.scatter(covid, x='Total', y='nom_mun', size='Total', 
                       color='quincena6', title = '<b>Incidencia delictiva en alcaldias</b>',
-                     template = "presentation",
+                     template = "plotly_dark",
                      )
 grafica8.update_traces(orientation = 'v')
 grafica8.update_layout(
@@ -156,7 +157,7 @@ grafica9.update_traces(orientation = 'v')
 grafica9.update_layout(title = '<b>9. Delitos totales por Alcaldía</b>',
                        title_font_family="Montserrat",title_font_color="goldenrod",
                        
-                 template='presentation')
+                 template='plotly_dark')
 
 
 
@@ -172,13 +173,15 @@ sourceurl='https://plotly.com/python/histograms/'
 ########### Initiate the app
 app = dash.Dash()
 colors = {
-    'background': '#FFFFFF',
-    'text': '#C0C0C0'
+    'background': '#000000',
+    'text': '#FFBF00'
 }
+
 server = app.server
 app.title=tabtitle
 
 ########### Set up the layout
+pio.templates.default = "plotly_dark"
 app.layout = html.Div(children=[
     
     html.Div(children = [ dcc.Markdown(
@@ -188,59 +191,72 @@ app.layout = html.Div(children=[
     ###### jueves 11 de febrero de 2020
 ''',
          )],style={'font-family': 'Montserrat',# 'sans-serif',
-                  'textAlign': 'center','color': colors['text'],'width': '100%'}
+                  'textAlign': 'center','color': colors['text'],'width': '100%',
+                  }
+             
         ),
      
+
    
     
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
-                       'layout': go.Layout(paper_bgcolor='white', #color de fondo
-                                           plot_bgcolor='white',
-                                           title='Mayor incidencia delictiva',
-                                           barmode='group')})],
-             style = {'margin': '1% 0px 0px 0px', 'width':'100%',
+                       'layout': go.Layout(paper_bgcolor='black',    #color de fondo
+                                           plot_bgcolor='black',
+                                           title='<b>Mayor incidencia delictiva<b>',
+                                           barmode='group',
+                                           title_font_color="goldenrod",
+                                           title_font_family="Montserrat Black"
+                                          )})],
+             style = {'margin': '1% 0px 0px 1px', 'width':'100%',
                      'font-family': 'Montserrat', 
-                      'fontColor': 'white' #Cambia tipo de letra
+                     #'fontColor': 'goldenrod' #Cambia tipo de letra
                     }),
-  
+
+    
    html.Div(children =[dcc.Graph(figure=grafica2)],
-            style={'margin': '2% 0px 0px 1px', 'width':'20%',
+            style={'margin': '2% 0px 0px 1px', 'width':'23%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
   
    html.Div(children = [dcc.Graph(figure=grafica3)],
-           style={'margin': '2% 0px 0px 1px', 'width':'20%',
+           style={'margin': '2% 0px 0px 1px', 'width':'23%',
                  'font-family': 'Montserrat',
                  'backgroundColor': colors['background']}),
   
     html.Div(children =[dcc.Graph(figure=grafica4)],
-             style={'margin': '2% 0px 0px 1px', 'width':'20%',
+             style={'margin': '2% 0px 0px 1px', 'width':'23%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
   
     html.Div(children = [dcc.Graph(figure=grafica5)],
-            style={'margin': '2% 0px 0px 0px', 'width':'20%',
+            style={'margin': '2% 0px 0px 0px', 'width':'23%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
     
     html.Div(children =[dcc.Graph(figure=grafica6)],
-             style={'margin': '2% 0px 0px 0px', 'width':'20%',
+             style={'margin': '3% 0px 0px 0px', 'width':'23%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
   
+
+    
     html.Div(children =[dcc.Graph(figure=grafica8)],
-            style={'margin': '4% 0px 0px 0px', 'width':'43%',
+            style={'margin': '3% 0px 0px 0px', 'width':'65%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
 
 #quinta franja
     html.Div(children = [dcc.Graph(figure=grafica9)],
-            style={'margin': '4% 0px 0px 0px', 'width':'43%',
+            style={'margin': '4% 0px 0px 0px', 'width':'100%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
   
   
+    html.A(" "),
+    html.Br(),
+    html.A(""),
+    html.Br(),
   
     html.A('Code on Github', href=githublink),
     html.Br(),
@@ -248,8 +264,10 @@ app.layout = html.Div(children=[
     html.I("Con la I se agrega texto!!",
     style={'color': '#C0C0C0','font-family': 'Montserrat',"size" :  "1000"}),
     dcc.Markdown('''
+#
+#
 #### Otra manera de agregar texto
-
+#
 Agregar un link: [Markdown](http://commonmark.org/help).
 
 Escritura normal.
