@@ -185,7 +185,7 @@ tabla2 = go.Figure(data=[go.Table(
                       ],
                fill_color='black',
                font_size=2,
-               height= 2,
+               height= 20,
     #         font = {'family': 'serif',
     #  'color':  'darkred',
     #  'weight': 'normal',
