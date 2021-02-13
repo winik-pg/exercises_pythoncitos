@@ -185,7 +185,7 @@ tabla2 = go.Figure(data=[go.Table(
                       ],
                fill_color='black',
                font_size=2,
-               height= 20,
+               height= 10,
     #         font = {'family': 'serif',
     #  'color':  'darkred',
     #  'weight': 'normal',
@@ -257,15 +257,6 @@ app.layout = html.Div(children=[
         ),
      
 
-#############################################################  Tabla 1
-
-    html.Div(children = [dcc.Graph(style={'backgroundColor': colors['background']},
-                    figure=tabla2)],
-             style={'margin': '1% 0px 0px 0px', 'width':'100%',
-                   'font-family': 'Montserrat',
-                   'backgroundColor': colors['background']}),
-
-#############################################################      
     
     
    
@@ -324,6 +315,20 @@ app.layout = html.Div(children=[
                   'backgroundColor': colors['background']}),
   
   
+
+#############################################################  Tabla 1
+
+    html.Div(children = [dcc.Graph(style={'backgroundColor': colors['background']},
+                    figure=tabla2)],
+             style={'margin': '1% 0px 0px 0px', 'width':'100%',
+                   'font-family': 'Montserrat',
+                    #paper_bgcolor='black',
+                    #plot_bgcolor='black',
+                   'backgroundColor': colors['background']}),
+
+#############################################################      
+    
+    
     
     
     html.A(" "),
