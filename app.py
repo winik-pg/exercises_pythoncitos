@@ -270,9 +270,11 @@ app.layout = html.Div(children=[
                                     html.H2("Resumen", style={"color": '#FFBF00',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
-                                                             'margin': '0% 40px 10px 40px', 'width':'40%',},),
+                                                              'font_size' : 240,
+                                                             'margin': '0% 40px 10px 80px', 'width':'60%',},),
+                                    
                                     html.Br([]),
-                                    html.H5(
+                                    html.H1(
                                         "\
                                     As the industry’s first index fund for individual investors, \
                                     the Calibre Index Fund is a low-cost way to gain diversified exposure \
@@ -285,9 +287,10 @@ app.layout = html.Div(children=[
                                     considered a core equity holding in a portfolio.",
                                         style={"color": '#FFBF00',
                                               'font-family': 'Montserrat',# 'sans-serif',
-                                              'textAlign': 'center',
+                                              'textAlign': 'left',
+                                               'font_size' : 240,
                                                'color': colors['text'],
-                                               'margin': '0% 40px 10px 40px', 'width':'40%',
+                                               'margin': '0% 40px 10px 80px', 'width':'90%',
                   
                                               },
                                         className="row",
@@ -298,7 +301,10 @@ app.layout = html.Div(children=[
                         ],
                         className="row",
                     ),
+
 ##############   
+    
+    
     
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
