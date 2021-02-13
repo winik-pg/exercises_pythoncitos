@@ -170,7 +170,7 @@ app.title=tabtitle
 ########### Set up the layout
 app.layout = html.Div(children=[
     
-     html.Div(children = [ dcc.Markdown(
+    html.Div(children = [ dcc.Markdown(
         ''' 
     #Prueba de Dashboard
     ## prueba sobre delitos
@@ -180,10 +180,8 @@ app.layout = html.Div(children=[
                   'textAlign': 'center','color': colors['text'],'width': '100%'}
         ),
      
-    html.H1( children='Hello Dash',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']}),
+   
+    
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
                        'layout': go.Layout(paper_bgcolor='black', #color de fondo
@@ -227,8 +225,20 @@ app.layout = html.Div(children=[
                   'backgroundColor': colors['background']}),
     html.A('Code on Github', href=githublink),
     html.Br(),
-    html.A('Data Source', href=sourceurl)
-    
+    html.A('Data Source', href=sourceurl),
+    html.I("Con la I se agrega texto!!",
+    style={'color': '#C0C0C0','font-family': 'Montserrat',"size" :  "1000"}),
+    dcc.Markdown('''
+#### Otra manera de agregar texto
+
+Agregar un link: [Markdown](http://commonmark.org/help).
+
+Escritura normal.
+ **Negritas** y *Cursiva*,
+[links](http://commonmark.org/help),  `cambiar tipo de letra` 
+
+''', style={'color': '#C0C0C0'}),
+    #html.Div([html.P('Dash converts Python classes into HTML'),
 ],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
         'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
                      # dark=True,
