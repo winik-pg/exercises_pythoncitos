@@ -12,7 +12,7 @@ import pandas as pd
 ################################### Abre archivos
 zacatecas = pd.read_csv('https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/Tabla%202.%20Delitos%20Zacatecas%20(2020)_2.csv', )
 covid = pd.read_csv("https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/cdmx_deaths.csv")
-
+bullet = pd.read_csv("https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/Tabla%20bullets.csv", encoding= "Latin1")
 
 
 ################################### Prepara Grafica 1
@@ -25,6 +25,7 @@ graf1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Otros delitos del Fuero Común')], n
 grafi1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Daño a la propiedad')], name = 'Daño a la propiedad')
 grafic1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Fraude')], name = 'Fraude')
 grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'Amenazas')
+
 
 
 ################################## Grafica 2
@@ -161,6 +162,65 @@ grafica9.update_layout(title = '<b>9. Delitos totales por Alcaldía</b>',
 
 
 
+
+
+####################### Crear Tabla1
+#Tabla de titulos     
+    
+patabla2 = {'Contagios': [ covid.Total.sum() ],
+            'Decesos': [ covid.Total.sum()],
+            'Vacunados': [ covid.Total.sum()],             }
+patabla3 = pd.DataFrame (patabla2, columns = ['Contagios', 'Decesos', 'Vacunados' ])
+
+tabla2 = go.Figure(data=[go.Table(
+    header=dict(values=list(patabla3),
+                fill_color='black',
+                align=['left', 'left','left']),
+                columnwidth = [2,2,2],
+#                align= ['left','left'],
+                #font=dict(color='black', size=12),
+
+#Cells 
+    cells=dict(values=[ patabla3.Contagios, patabla3.Decesos, patabla3.Vacunados
+                      ],
+               fill_color='black',
+               font_size=2,
+               height= 2,
+    #         font = {'family': 'serif',
+    #  'color':  'darkred',
+    #  'weight': 'normal',
+    #  'size': 16,
+    #  },
+    #         #font = dict(color = 'white', size = 10),
+               #style_column = 30px,
+               align= ['left', 'left','left']
+             # style="background-color:Red"
+              )
+              )
+               ])
+
+#HEADER
+#tabla1.update_traces(header_values=3, selector=dict(type='table'))
+tabla2.update_traces(header_fill_color="black", selector=dict(type='table'))
+tabla2.update_traces(header_font_family= "Montserrat", selector=dict(type='table'))
+tabla2.update_traces(header_font_size=13, selector=dict(type='table'))
+tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
+
+#cells
+#tabla2.update_traces(columnwidth=3, selector=dict(type='table'))
+#tabla2.update_traces(cells_values=[1, patabla["Tipo de delito"], patabla.ene_20.sum()], selector=dict(type='figure'))
+#tabla2.update_traces(cells_format=[], selector=dict(type='table'))
+tabla2.update_traces(cells_font_size=80, selector=dict(type='table'))
+tabla2.update_traces(cells_font_color= "goldenrod", selector=dict(type='table'))
+tabla2.update_traces(cells_font_family= 'Montserrat',  selector=dict(type='table'))
+tabla2.update_traces(cells_fill_color = "black", selector =dict(type="table"))
+tabla2.update_traces(hoverlabel_namelength=20, selector=dict(type='table'))
+
+
+
+
+
+
 ####################################################################################
 ########### Define your variables
 
@@ -197,6 +257,17 @@ app.layout = html.Div(children=[
         ),
      
 
+#############################################################  Tabla 1
+
+    html.Div(children = [dcc.Graph(style={'backgroundColor': colors['background']},
+                    figure=tabla2)],
+             style={'margin': '1% 0px 0px 0px', 'width':'100%',
+                   'font-family': 'Montserrat',
+                   'backgroundColor': colors['background']}),
+
+#############################################################      
+    
+    
    
     
     html.Div( children = [dcc.Graph(id='grafica1',
@@ -208,51 +279,53 @@ app.layout = html.Div(children=[
                                            title_font_color="goldenrod",
                                            title_font_family="Montserrat Black"
                                           )})],
-             style = {'margin': '1% 0px 0px 1px', 'width':'100%',
+             style = {'margin': '2% 0px 0px 1px', 'width':'100%',
                      'font-family': 'Montserrat', 
                      #'fontColor': 'goldenrod' #Cambia tipo de letra
                     }),
 
     
    html.Div(children =[dcc.Graph(figure=grafica2)],
-            style={'margin': '2% 0px 0px 1px', 'width':'23%',
+            style={'margin': '3% 0px 0px 1px', 'width':'23%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
   
    html.Div(children = [dcc.Graph(figure=grafica3)],
-           style={'margin': '2% 0px 0px 1px', 'width':'23%',
+           style={'margin': '3% 0px 0px 1px', 'width':'23%',
                  'font-family': 'Montserrat',
                  'backgroundColor': colors['background']}),
   
     html.Div(children =[dcc.Graph(figure=grafica4)],
-             style={'margin': '2% 0px 0px 1px', 'width':'23%',
+             style={'margin': '3% 0px 0px 1px', 'width':'23%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
   
     html.Div(children = [dcc.Graph(figure=grafica5)],
-            style={'margin': '2% 0px 0px 0px', 'width':'23%',
+            style={'margin': '3% 0px 0px 0px', 'width':'23%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
     
     html.Div(children =[dcc.Graph(figure=grafica6)],
-             style={'margin': '3% 0px 0px 0px', 'width':'23%',
+             style={'margin': '4% 0px 0px 0px', 'width':'23%',
                    'font-family': 'Montserrat',
                    'backgroundColor': colors['background']}),
   
 
     
     html.Div(children =[dcc.Graph(figure=grafica8)],
-            style={'margin': '3% 0px 0px 0px', 'width':'65%',
+            style={'margin': '4% 0px 0px 0px', 'width':'65%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
 
 #quinta franja
     html.Div(children = [dcc.Graph(figure=grafica9)],
-            style={'margin': '4% 0px 0px 0px', 'width':'100%',
+            style={'margin': '5% 0px 0px 0px', 'width':'100%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']}),
   
   
+    
+    
     html.A(" "),
     html.Br(),
     html.A(""),
