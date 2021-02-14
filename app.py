@@ -203,14 +203,14 @@ tabla2 = go.Figure(data=[go.Table(
 #tabla1.update_traces(header_values=3, selector=dict(type='table'))
 tabla2.update_traces(header_fill_color="black", selector=dict(type='table'))
 tabla2.update_traces(header_font_family= "Montserrat", selector=dict(type='table'))
-tabla2.update_traces(header_font_size=13, selector=dict(type='table'))
+tabla2.update_traces(header_font_size=10, selector=dict(type='table'))
 tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
 
 #cells
 #tabla2.update_traces(columnwidth=3, selector=dict(type='table'))
 #tabla2.update_traces(cells_values=[1, patabla["Tipo de delito"], patabla.ene_20.sum()], selector=dict(type='figure'))
 #tabla2.update_traces(cells_format=[], selector=dict(type='table'))
-tabla2.update_traces(cells_font_size=80, selector=dict(type='table'))
+tabla2.update_traces(cells_font_size=40, selector=dict(type='table'))
 tabla2.update_traces(cells_font_color= "goldenrod", selector=dict(type='table'))
 tabla2.update_traces(cells_font_family= 'Montserrat',  selector=dict(type='table'))
 tabla2.update_traces(cells_fill_color = "black", selector =dict(type="table"))
