@@ -32,8 +32,10 @@ grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'Amenazas')
 grafica2 = px.line(covid, x = covid['nom_mun'], y = covid['quincena0'])
 grafica2.update_traces(orientation = 'v')
 grafica2.update_layout(font_family="Montserrat",title = '<b>Quincena 0</b>',
-                       template = 'plotly_dark',title_font_family="Montserrat",
-                       title_font_color="goldenrod",)
+                       template = 'simple_white',title_font_family="Montserrat",
+                       title_font_color="goldenrod",
+                      paper_bgcolor='rgba(0,0,0,0)',
+                      plot_bgcolor='rgba(0,0,0,0)',)
 
 
 #################################### Grafica 3
@@ -41,24 +43,34 @@ grafica3 = px.line(covid, x = covid['nom_mun'], y = covid['quincena2'])
 grafica3.update_traces(orientation = 'v')
 grafica3.update_layout(font_family="Montserrat",
                        title = '<b>Quincena 2</b>',
-                       template = 'plotly_dark',
+                       template = 'simple_white',
                        title_font_family="Montserrat",
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
                        title_font_color="goldenrod",)
 
 
 ################################### Grafica 4
 grafica4 = px.line(covid, x = covid['nom_mun'], y = covid['quincena3'])
 grafica4.update_traces(orientation = 'v')
-grafica4.update_layout(font_family="Montserrat",title = '<b>Quincena 3</b>',
-                      template='plotly_dark',title_font_family="Montserrat",
-                      title_font_color="goldenrod",)
+grafica4.update_layout(font_family="Montserrat",
+                       title = '<b>Quincena 3</b>',
+                       template='simple_white',
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
+                       title_font_family="Montserrat",
+                       title_font_color="goldenrod",)
 
 
 ############################################ Grafica 5
 grafica5 = px.line(covid, x = covid['nom_mun'], y = covid['quincena4'])
 grafica5.update_traces(orientation = 'v')
-grafica5.update_layout(font_family="Montserrat",title = '<b>Quincena 4</b>',
-                      template='plotly_dark',title_font_family="Montserrat",
+grafica5.update_layout(font_family="Montserrat",
+                       title = '<b>Quincena 4</b>',
+                       template='simple_white',
+                       paper_bgcolor='rgba(0,0,0,0)', #Hace transparente el borde de la gráfica 
+                       title_font_family="Montserrat",
+                       plot_bgcolor='rgba(0,0,0,0)',
                        title_font_color="goldenrod", )
 grafica5.update_xaxes(title_font_family="Montserrat")
 
@@ -73,9 +85,11 @@ grafica6.update_traces(orientation = 'v', marker=dict(size=12,
                      
 grafica6.update_layout(font_family="Montserrat", #Tipo de letra del contenido de gráfica 
                        title = '<b>Quincena 5</b>',
-                       template='plotly_dark',
-                      title_font_family="Montserrat", #Tipo de letra del titulo
-                      title_font_color="goldenrod",
+                       template='simple_white',
+                       title_font_family="Montserrat", #Tipo de letra del titulo
+                       title_font_color="goldenrod",
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
                       #line_color= "dark"
                       ) #Con esto se cambia color letra
 grafica6.update_xaxes(title_font_family="Montserrat") #Tipo de letra de x,y
@@ -84,16 +98,24 @@ grafica6.update_xaxes(title_font_family="Montserrat") #Tipo de letra de x,y
 ########################################### Grafica 8
 grafica8 = px.scatter(covid, x='Total', y='nom_mun', size='Total', 
                       color='quincena6', title = '<b>Incidencia delictiva en alcaldias</b>',
-                     template = "plotly_dark",
+                     template = "simple_white",
                      )
+
+#layout = Layout(
+#    paper_bgcolor='rgba(0,0,0,0)',
+#    plot_bgcolor='rgba(0,0,0,0)'
+#)
+
 grafica8.update_traces(orientation = 'v')
 grafica8.update_layout(
     font_family="Montserrat",
-    font_color="lightgray",
+    font_color="black",
     title_font_family="Montserrat",
-    font_size=10,
+    font_size=12,
     title_font_color="goldenrod",
-    legend_title_font_color="green"
+    legend_title_font_color="green",
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
     
 )
 grafica8.update_xaxes(title_font_family="Montserrat")
@@ -155,26 +177,28 @@ grafica9.add_trace(go.Bar(
     marker_color='#CE93D8'
 ))
 grafica9.update_traces(orientation = 'v')
-grafica9.update_layout(title = '<b>9. Delitos totales por Alcaldía</b>',
-                       title_font_family="Montserrat",title_font_color="goldenrod",
-                       
-                 template='plotly_dark')
+grafica9.update_layout(title = '<b>Delitos totales por Alcaldía</b>',
+                       title_font_family="Montserrat",
+                       title_font_color="goldenrod",
+                       paper_bgcolor='rgba(0,0,0,0)',
+                       plot_bgcolor='rgba(0,0,0,0)',
+                       template='simple_white')
 
 
 
 
 
-####################### Crear Tabla1
+####################### Crear Tabla 1
 #Tabla de titulos     
     
 patabla2 = {'Contagios': [ covid.Total.sum() ],
-            'Decesos': [ covid.Total.sum()],
-            'Vacunados': [ covid.Total.sum()],             }
+            'Decesos': [ covid.quincena6.sum()],
+            'Vacunados': [ covid.quincena5.sum()],             }
 patabla3 = pd.DataFrame (patabla2, columns = ['Contagios', 'Decesos', 'Vacunados' ])
 
 tabla2 = go.Figure(data=[go.Table(
     header=dict(values=list(patabla3),
-                fill_color='black',
+                fill_color='#e3e3e3',
                 align=['left', 'left','left']),
                 columnwidth = [2,2,2],
 #                align= ['left','left'],
@@ -183,9 +207,11 @@ tabla2 = go.Figure(data=[go.Table(
 #Cells 
     cells=dict(values=[ patabla3.Contagios, patabla3.Decesos, patabla3.Vacunados
                       ],
-               fill_color='black',
+               fill_color='#e3e3e3',
                font_size=2,
-               height= 10,
+               height= 80,
+               #paper_bgcolor='rgba(0,0,0,0)',
+                #       plot_bgcolor='rgba(0,0,0,0)',
     #         font = {'family': 'serif',
     #  'color':  'darkred',
     #  'weight': 'normal',
@@ -201,7 +227,7 @@ tabla2 = go.Figure(data=[go.Table(
 
 #HEADER
 #tabla1.update_traces(header_values=3, selector=dict(type='table'))
-tabla2.update_traces(header_fill_color="black", selector=dict(type='table'))
+tabla2.update_traces(header_fill_color="#e3e3e3", selector=dict(type='table'))
 tabla2.update_traces(header_font_family= "Montserrat", selector=dict(type='table'))
 tabla2.update_traces(header_font_size=10, selector=dict(type='table'))
 tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
@@ -210,11 +236,11 @@ tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
 #tabla2.update_traces(columnwidth=3, selector=dict(type='table'))
 #tabla2.update_traces(cells_values=[1, patabla["Tipo de delito"], patabla.ene_20.sum()], selector=dict(type='figure'))
 #tabla2.update_traces(cells_format=[], selector=dict(type='table'))
-tabla2.update_traces(cells_font_size=40, selector=dict(type='table'))
+tabla2.update_traces(cells_font_size=80, selector=dict(type='table'))
 tabla2.update_traces(cells_font_color= "goldenrod", selector=dict(type='table'))
 tabla2.update_traces(cells_font_family= 'Montserrat',  selector=dict(type='table'))
-tabla2.update_traces(cells_fill_color = "black", selector =dict(type="table"))
-tabla2.update_traces(hoverlabel_namelength=20, selector=dict(type='table'))
+tabla2.update_traces(cells_fill_color = "#e3e3e3", selector =dict(type="table"))
+tabla2.update_traces(hoverlabel_namelength=80, selector=dict(type='table'))
 
 
 
@@ -233,15 +259,15 @@ sourceurl='https://plotly.com/python/histograms/'
 ########### Initiate the app
 app = dash.Dash()
 colors = {
-    'background': '#000000',
-    'text': '#FFBF00'
+    'background': '#e3e3e3',
+    'text': '#b38115'
 }
 
 server = app.server
 app.title=tabtitle
 
 ########### Set up the layout
-pio.templates.default = "plotly_dark"
+
 app.layout = html.Div(children=[
     
     html.Div(children = [ dcc.Markdown(
@@ -263,30 +289,27 @@ app.layout = html.Div(children=[
                         [
                             html.Div(
                                 [
-                                    html.P("Resumen", style={"color": '#FFBF00',
+                                    html.H1("Resumen", style={"color": '#b38115',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
                                                               'font_size' : 10,
-                                                             'margin': '1% 0px 0px 129px', 'width':'40%',},),
+                                                             'margin': '1% 0px 0px 100px', 'width':'90%',},),
                                     
                                     #html.Br([]),
-                                    html.P(
+                                    html.H2(
                                         "\
-                                    As the industry’s first index fund for individual investors, \
-                                    the Calibre Index Fund is a low-cost way to gain diversified exposure \
-                                    to the U.S. equity market. The fund offers exposure to 500 of the \
-                                    largest U.S. companies, which span many different industries and \
-                                    account for about three-fourths of the U.S. stock market’s value. \
-                                    The key risk for the fund is the volatility that comes with its full \
-                                    exposure to the stock market. Because the Calibre Index Fund is broadly \
-                                    diversified within the large-capitalization market, it may be \
-                                    considered a core equity holding in a portfolio.",
+                                    En esta entidad, los contagios fueron más altos en las siguientes \
+                                    cuatro quincenas:  en la quincena 15, en la cual destaca el municipio \
+                                    Aguascalientes (1,228) con el mayor número de contagios; seguida por \
+                                    la quincena 14, en la cual destaca el municipio Aguascalientes (820); \
+                                    asimismo, la quincena 11 con el municipio Aguascalientes (752); finalmente,\
+                                    en la quincena 8, en el cual destaca el municipio Aguascalientes (631)",
                                         style={"color": '#FFBF00',
                                               'font-family': 'Montserrat',# 'sans-serif',
                                               'textAlign': 'left',
-                                               'font_size' : 10,
+                                               'font_size' : 80,
                                                'color': colors['text'],
-                                               'margin': '1% 0px 0px 120px', 'width':'40%',
+                                               'margin': '1% 390px 10px 100px', 'width':'90%',
                   
                                               },
                                         className="row",
@@ -300,13 +323,30 @@ app.layout = html.Div(children=[
 
 
 ############################################################   resumen 2
-#quinta franja
+
+ # Segunda franja
+    
     html.Div(children = [dcc.Graph(figure=grafica9)],
-            style={'margin': '1% 0px 0px 120px', 'width':'40%',
+            style={'margin': '1% 0px 0px 100px', 'width':'40%',
                   'font-family': 'Montserrat',
-                  'backgroundColor': colors['background']}),
+                  'backgroundColor': colors['background']
+                                           }),
   
 
+    
+    html.Div(children =[dcc.Graph(figure=grafica8)],
+            style={'margin': '1% 0px 0px 30px', 'width':'45%',
+                  'font-family': 'Montserrat',
+                  #'backgroundColor': colors['background']
+                  # layout = Layout(
+                  # paper_bgcolor='rgba(0,0,0,0)',
+                  # plot_bgcolor='rgba(0,0,0,0)'
+                  # )
+                  }),
+
+    
+
+    
     
 ############################################################   resumen 3
 
@@ -315,7 +355,7 @@ app.layout = html.Div(children=[
                         [
                             html.Div(
                                 [
-                                    html.H1("Resumen", style={"color": '#FFBF00',
+                                    html.H1("Resumen", style={"color": '#b38115',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
                                                               'font_size' : 10,
@@ -324,15 +364,12 @@ app.layout = html.Div(children=[
                                     #html.Br([]),
                                     html.H2(
                                         "\
-                                    As the industry’s first index fund for individual investors, \
-                                    the Calibre Index Fund is a low-cost way to gain diversified exposure \
-                                    to the U.S. equity market. The fund offers exposure to 500 of the \
-                                    largest U.S. companies, which span many different industries and \
-                                    account for about three-fourths of the U.S. stock market’s value. \
-                                    The key risk for the fund is the volatility that comes with its full \
-                                    exposure to the stock market. Because the Calibre Index Fund is broadly \
-                                    diversified within the large-capitalization market, it may be \
-                                    considered a core equity holding in a portfolio.",
+                                    En esta entidad, los contagios fueron más altos en las siguientes \
+                                    cuatro quincenas:  en la quincena 15, en la cual destaca el municipio \
+                                    Aguascalientes (1,228) con el mayor número de contagios; seguida por \
+                                    la quincena 14, en la cual destaca el municipio Aguascalientes (820); \
+                                    asimismo, la quincena 11 con el municipio Aguascalientes (752); finalmente,\
+                                    en la quincena 8, en el cual destaca el municipio Aguascalientes (631)" ,
                                         style={"color": '#FFBF00',
                                               'font-family': 'Montserrat',# 'sans-serif',
                                               'textAlign': 'left',
@@ -357,14 +394,16 @@ app.layout = html.Div(children=[
     
     html.Div( children = [dcc.Graph(id='grafica1',
               figure= {'data':[g1,gr1,gra1,graf1,grafi1,grafic1,grafica1],
-                       'layout': go.Layout(paper_bgcolor='black',    #color de fondo
-                                           plot_bgcolor='black',
+                       'layout': go.Layout(paper_bgcolor='rgba(0,0,0,0)',
+                                           plot_bgcolor='rgba(0,0,0,0)',
                                            title='<b>Mayor incidencia delictiva<b>',
                                            barmode='group',
                                            title_font_color="goldenrod",
-                                           title_font_family="Montserrat Black"
+                                           title_font_family="Montserrat Black",
+                                           #paper_bgcolor='rgb(233,233,233)',
+                                           
                                           )})],
-             style = {'margin': '2% 0px 0px 1px', 'width':'100%',
+             style = {'margin': '2% 0px 0px 100px', 'width':'90%',
                      'font-family': 'Montserrat', 
                      #'fontColor': 'goldenrod' #Cambia tipo de letra
                     }),
@@ -414,7 +453,7 @@ app.layout = html.Div(children=[
 
     html.Div(children = [dcc.Graph(style={'backgroundColor': colors['background']},
                     figure=tabla2)],
-             style={'margin': '1% 0px 0px 0px', 'width':'100%',
+             style={'margin': '0% 120px 0px 0px', 'width':'100%',
                    'font-family': 'Montserrat',
                     #paper_bgcolor='black',
                     #plot_bgcolor='black',
@@ -425,28 +464,28 @@ app.layout = html.Div(children=[
     
     
     
-    html.A(" "),
-    html.Br(),
-    html.A(""),
-    html.Br(),
+#    html.A(" "),
+#    html.Br(),
+#    html.A(""),
+#    html.Br(),
   
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
-    html.I("Con la I se agrega texto!!",
-    style={'color': '#C0C0C0','font-family': 'Montserrat',"size" :  "1000"}),
-    dcc.Markdown('''
+#    html.A('Code on Github', href=githublink),
+#    html.Br(),
+#    html.A('Data Source', href=sourceurl),
+#    html.I("Con la I se agrega texto!!",
+#    style={'color': '#C0C0C0','font-family': 'Montserrat',"size" :  "1000"}),
+#    dcc.Markdown('''
 #
 #
 #### Otra manera de agregar texto
 #
-Agregar un link: [Markdown](http://commonmark.org/help).
+#Agregar un link: [Markdown](http://commonmark.org/help).
 
-Escritura normal.
- **Negritas** y *Cursiva*,
-[links](http://commonmark.org/help),  `cambiar tipo de letra` 
+#Escritura normal.
+# **Negritas** y *Cursiva*,
+#[links](http://commonmark.org/help),  `cambiar tipo de letra` 
 
-''', style={'color': '#C0C0C0'}),
+#''', style={'color': '#C0C0C0'}),
     #html.Div([html.P('Dash converts Python classes into HTML'),
 ],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
         'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
