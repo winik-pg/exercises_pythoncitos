@@ -252,7 +252,7 @@ tabla2.update_traces(hoverlabel_namelength=80, selector=dict(type='table'))
 
 mytitle='Añadir graficas'
 tabtitle='Prueba Dash!'
-githublink='https://github.com/fdealbam/flying-dog-beers'
+githublink='https://github.com/Aeelen-Miranda/exercises_pythoncitos/blob/master/app.py'
 sourceurl='https://plotly.com/python/histograms/'
 
 
