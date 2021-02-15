@@ -210,11 +210,9 @@ grafica9.update_layout(title = '<b>Delitos totales por Alcaldía</b>',
 
 
 
-
-
 ####################### Crear Tabla 1
+
 #Tabla de titulos     
-    
 patabla2 = {'Contagios': [ covid.Total.sum() ],
             'Decesos': [ covid.quincena6.sum()],
             'Vacunados': [ covid.quincena5.sum()],             }
@@ -226,19 +224,15 @@ tabla2 = go.Figure(data=[go.Table(
             
                 align=['left', 'left','left']),
                 columnwidth = [2,2,2],
-
-
 #Cells 
-    cells=dict(values=[ patabla3.Contagios, patabla3.Decesos, patabla3.Vacunados
-                      ],
+    cells=dict(values=[ patabla3.Contagios, patabla3.Decesos, patabla3.Vacunados],
               # fill_color='#e3e3e3',
                font_size=2,
-               height= 80,
+               height= 50,
                align= ['left', 'left','left']))])
-
 #HEADER
 #tabla1.update_traces(header_values=3, selector=dict(type='table'))
-tabla2.update_traces(header_fill_color='rgba(227,227,227,0.5)', selector=dict(type='table'))
+tabla2.update_traces(header_fill_color='rgba(138, 199, 204, 0.4)', selector=dict(type='table'))
 tabla2.update_traces(header_font_family= "Montserrat", selector=dict(type='table'))
 tabla2.update_traces(header_font_size=12, selector=dict(type='table'))
 tabla2.update_traces(header_font_color="black", selector=dict(type='table'))
@@ -248,22 +242,20 @@ tabla2.update_traces(header_line_color="#e3e3e3", selector=dict(type='table'))
 #tabla2.update_traces(columnwidth=3, selector=dict(type='table'))
 #tabla2.update_traces(cells_values=[1, patabla["Tipo de delito"], patabla.ene_20.sum()], selector=dict(type='figure'))
 #tabla2.update_traces(cells_format=[], selector=dict(type='table'))
-tabla2.update_traces(cells_font_size=80, selector=dict(type='table'))
+tabla2.update_traces(cells_font_size=40, selector=dict(type='table'))
 tabla2.update_traces(cells_font_color= "goldenrod", selector=dict(type='table'))
 tabla2.update_traces(cells_font_family= 'Montserrat',  selector=dict(type='table'))
-tabla2.update_traces(cells_fill_color = 'rgba(227,227,227,0.5)', selector =dict(type="table"))
-tabla2.update_traces(hoverlabel_namelength=80, selector=dict(type='table'))
+tabla2.update_traces(cells_fill_color = 'rgba(138, 199, 204, 0.3)', selector =dict(type="table"))
+tabla2.update_traces(hoverlabel_namelength=50, selector=dict(type='table'))
 tabla2.update_traces(cells_line_color= "#e3e3e3", selector=dict(type='table'))
 
 tabla2.update_layout(paper_bgcolor='rgba(227,227,227,0.5)', #color de fondo
-                    plot_bgcolor='rgba(227,227,227,0.5)',
+                    plot_bgcolor='rgba(227,227,227,0.5)',  
                    #line_color = 'rgba(227,227,227,0.5)',
                     )
 
+# https://www.w3schools.com/Css/css_colors_rgb.asp
 
-
-
-####################################################################################
 ########### Define your variables
 
 mytitle='Añadir graficas'
@@ -272,49 +264,52 @@ githublink='https://github.com/Aeelen/exercises_pythoncitos/'
 sourceurl='https://plotly.com/python/histograms/'
 
 
-########### Initiate the app
+######################### Initiate the app  ###################################
 app = dash.Dash()
 colors = {
     'background': '#e3e3e3',
     'text': '#b38115',
     'table': 'rgba(227,227,227,0.5)'
-}
+    }
 
 server = app.server
 app.title=tabtitle
 
-########### Set up the layout
-
+############################  BODY    ###########################################
+# titulos
 app.layout = html.Div(children=[
     
-    html.Div(children = [ dcc.Markdown(
-        ''' 
+    html.Div(children = [ dcc.Markdown(''' 
+    
     ### *Dashboard mejorado*
     # Incidencia de delitos
     ###### jueves 11 de febrero de 2020
-''',
-         )],style={'font-family': 'Montserrat',# 'sans-serif',
+    
+    ''',)],style={'font-family': 'Montserrat',# 'sans-serif',
                   'textAlign': 'center','color': colors['text'],'width': '100%',
-                  }
-             
-        ),
-     
-
-############################################################ Resumen    
-           # Row 3
-                    html.Div(children= 
-                        [
-                            html.Div(
-                                [
-                                    html.H1("Resumen", style={"color": '#b38115',
+                  }), 
+    
+# Primera franja    
+    html.Div(children = [dcc.Graph(figure=tabla2)],
+             style={'margin': '0% 0px 0px 0px',
+                    'width':'100%',
+                    'font-family': 'Montserrat'}),
+  
+# Segunda franja
+    html.Div( children = [dcc.Graph(figure=figaro)],                  
+             style = {'margin': '2% 0px 0px 100px', 'width':'95%',
+                     'font-family': 'Montserrat', 
+                     #'fontColor': 'goldenrod' #Cambia tipo de letra
+                    }),
+    
+# Tercera franja    
+    html.Div(children=[html.Div([html.H1("Resumen", style={"color": '#b38115',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
                                                               'font_size' : 10,
                                                              'margin': '1% 0px 0px 100px', 'width':'90%',},),
-                                    
                                     #html.Br([]),
-                                    html.H2(
-                                        "\
+                                    html.H2("\
                                     En esta entidad, los contagios fueron más altos en las siguientes \
                                     cuatro quincenas:  en la quincena 15, en la cual destaca el municipio \
                                     Aguascalientes (1,228) con el mayor número de contagios; seguida por \
@@ -327,54 +322,49 @@ app.layout = html.Div(children=[
                                                'font_size' : 80,
                                                'color': colors['text'],
                                                'margin': '1% 390px 10px 100px', 'width':'90%',
-                  
-                                              },
-                                        className="row",
-                                    ),
-                                ],
-                                className="product",
-                            )
-                        ],
-                        className="row",
-                    ),
-
-
-
-############################################################  Grafica contagios
+                                              },className="row",),],className="product",)],className="row",),
     
     
-    html.Div( children = [dcc.Graph(figure=figaro)],                   ####big grap contagios
-             style = {'margin': '2% 0px 0px 100px', 'width':'95%',
-                     'font-family': 'Montserrat', 
-                     #'fontColor': 'goldenrod' #Cambia tipo de letra
-                    }),
-
-        
-    
-        
-    
-############################################################   resumen 2
-
-    
- # Segunda franja
+# Cuarta franja
+# aqui vamos:    prueba dos elementos (texto y grafica) en  mismna  franja
     
     html.Div(children = [dcc.Graph(figure=grafica9)],
-            style={'margin': '1% 0px 0px 100px', 'width':'40%',
+            style={'margin': '0% 0px 50px 50px', 'width':'40%',
                   'font-family': 'Montserrat',
                   'backgroundColor': colors['background']
                                            }),
   
-
+    html.Div(children=[html.Div([html.H1("Resumen", style={"color": '#b38115',
+                                                                     'font-family': 'Montserrat',
+                                                                     'textAlign': 'left',
+                                                              'font_size' : 9,
+                                                              'margin': '0% 0px 0px 600px', 'width':'10%',},),
+                                    #html.Br([]),
+    html.H2("\
+                                    En esta entidad, los contagios fueron más altos en las siguientes \
+                                    cuatro quincenas:  en la quincena 15, en la cual destaca el municipio \
+                                    Aguascalientes (1,228) con el mayor número de contagios; seguida por \
+                                    la quincena 14, en la cual destaca el municipio Aguascalientes (820); \
+                                    asimismo, la quincena 11 con el municipio Aguascalientes (752); finalmente,\
+                                    en la quincena 8, en el cual destaca el municipio Aguascalientes (631)",
+                                        style={"color": '#FFBF00',
+                                              'font-family': 'Montserrat',# 'sans-serif',
+                                              'textAlign': 'let',
+                                               'font_size' : 12,
+                                               'color': colors['text'],
+                                               'margin': '0% 0px 0px 600px', 'width':'40%',
+                                              },className="row",),],className="product",)],className="row",),
     
-    html.Div(children =[dcc.Graph(figure=grafica8)],
-            style={'margin': '1% 0px 0px 30px', 'width':'45%',
-                  'font-family': 'Montserrat',
+#####################################    
+#    html.Div(children =[dcc.Graph(figure=grafica8)],
+ #           style={'margin': '1% 0px 0px 30px', 'width':'45%',
+  #                'font-family': 'Montserrat',
                   #'backgroundColor': colors['background']
                   # layout = Layout(
                   # paper_bgcolor='rgba(0,0,0,0)',
                   # plot_bgcolor='rgba(0,0,0,0)'
                   # )
-                  }),
+  #                }),
 
     
 
@@ -382,17 +372,11 @@ app.layout = html.Div(children=[
     
 ############################################################   resumen 3
 
-           # Row 3
-                    html.Div(children= 
-                        [
-                            html.Div(
-                                [
-                                    html.H1("Resumen", style={"color": '#b38115',
+    html.Div(children=[html.Div([html.H1("Resumen", style={"color": '#b38115',
                                                                      'font-family': 'Montserrat',
                                                                      'textAlign': 'left',
-                                                              'font_size' : 10,
-                                                             'margin': '1% 0px 0px 120px', 'width':'80%',},),
-                                    
+                                                              'font_size' : 8,
+                                                             'margin': '1% 0px 0px 120px', 'width':'80%',},),   
                                     #html.Br([]),
                                     html.H2(
                                         "\
@@ -405,19 +389,13 @@ app.layout = html.Div(children=[
                                         style={"color": '#FFBF00',
                                               'font-family': 'Montserrat',# 'sans-serif',
                                               'textAlign': 'left',
-                                               'font_size' : 80,
+                                               'font_size' : 40,
                                                'color': colors['text'],
                                                'margin': '1% 0px 0px 120px', 'width':'80%',
                   
                                               },
                                         #className="row",
-                                    ),
-                                ],
-                                className="product",
-                            )
-                        ],
-                        className="row",
-                    ),
+                                    ),],className="product",)],className="row",),
 
     
 
@@ -483,8 +461,7 @@ app.layout = html.Div(children=[
 
 #############################################################  Tabla 1
 
-    html.Div(children = [dcc.Graph(figure=tabla2)],
-             style={'width':'100%','font-family': 'Montserrat'}),
+    
 
 #############################################################      
 
