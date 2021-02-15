@@ -13,6 +13,7 @@ import pandas as pd
 zacatecas = pd.read_csv('https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/Tabla%202.%20Delitos%20Zacatecas%20(2020)_2.csv', )
 covid = pd.read_csv("https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/cdmx_deaths.csv")
 bullet = pd.read_csv("https://raw.githubusercontent.com/fdealbam/flying-dog-beers/master/Tabla%20bullets.csv", encoding= "Latin1")
+contagios2 = pd.read_csv("https://raw.githubusercontent.com/winik-pg/exercises_pythoncitos/master/contagios_20210213.csv")
 
 
 ################################### Prepara Grafica 1
@@ -25,6 +26,29 @@ graf1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Otros delitos del Fuero Común')], n
 grafi1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Daño a la propiedad')], name = 'Daño a la propiedad')
 grafic1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Fraude')], name = 'Fraude')
 grafica1 = go.Bar(x=pv.index, y=pv[('ene-20', 'Amenazas')], name = 'Amenazas')
+
+
+################################  grafia 1.1 contagios acumulados por día
+
+figaro = go.Figure()
+figaro.add_trace(go.Bar(x=contagios2['date'],y=contagios2['confirmados'],
+                #name='Contagios confirmados COVID-19',
+                marker_color='#0776a8'  # cambiar nuemeritos de rgb
+                ))
+figaro.update_layout(
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    xaxis_tickangle=-45,
+    template = 'simple_white',
+    title='Evolución del COVID-19',
+    xaxis_tickfont_size= 6,
+    yaxis=dict(
+        title='Contagios diarios',
+        titlefont_size=14,
+        tickfont_size=12,))
+
+
+
 
 
 
@@ -91,7 +115,7 @@ grafica6.update_layout(font_family="Montserrat", #Tipo de letra del contenido de
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)',
                       #line_color= "dark"
-                      ) #Con esto se cambia color letra
+                      ) 
 grafica6.update_xaxes(title_font_family="Montserrat") #Tipo de letra de x,y
 
 
@@ -197,40 +221,28 @@ patabla2 = {'Contagios': [ covid.Total.sum() ],
 patabla3 = pd.DataFrame (patabla2, columns = ['Contagios', 'Decesos', 'Vacunados' ])
 
 tabla2 = go.Figure(data=[go.Table(
+#Header
     header=dict(values=list(patabla3),
-                fill_color='#e3e3e3',
+            
                 align=['left', 'left','left']),
                 columnwidth = [2,2,2],
-#                align= ['left','left'],
-                #font=dict(color='black', size=12),
+
 
 #Cells 
     cells=dict(values=[ patabla3.Contagios, patabla3.Decesos, patabla3.Vacunados
                       ],
-               fill_color='#e3e3e3',
+              # fill_color='#e3e3e3',
                font_size=2,
                height= 80,
-               #paper_bgcolor='rgba(0,0,0,0)',
-                #       plot_bgcolor='rgba(0,0,0,0)',
-    #         font = {'family': 'serif',
-    #  'color':  'darkred',
-    #  'weight': 'normal',
-    #  'size': 16,
-    #  },
-    #         #font = dict(color = 'white', size = 10),
-               #style_column = 30px,
-               align= ['left', 'left','left']
-             # style="background-color:Red"
-              )
-              )
-               ])
+               align= ['left', 'left','left']))])
 
 #HEADER
 #tabla1.update_traces(header_values=3, selector=dict(type='table'))
-tabla2.update_traces(header_fill_color="#e3e3e3", selector=dict(type='table'))
+tabla2.update_traces(header_fill_color='rgba(227,227,227,0.5)', selector=dict(type='table'))
 tabla2.update_traces(header_font_family= "Montserrat", selector=dict(type='table'))
-tabla2.update_traces(header_font_size=10, selector=dict(type='table'))
-tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
+tabla2.update_traces(header_font_size=12, selector=dict(type='table'))
+tabla2.update_traces(header_font_color="black", selector=dict(type='table'))
+tabla2.update_traces(header_line_color="#e3e3e3", selector=dict(type='table'))
 
 #cells
 #tabla2.update_traces(columnwidth=3, selector=dict(type='table'))
@@ -239,10 +251,14 @@ tabla2.update_traces(header_font_color="gold", selector=dict(type='table'))
 tabla2.update_traces(cells_font_size=80, selector=dict(type='table'))
 tabla2.update_traces(cells_font_color= "goldenrod", selector=dict(type='table'))
 tabla2.update_traces(cells_font_family= 'Montserrat',  selector=dict(type='table'))
-tabla2.update_traces(cells_fill_color = "#e3e3e3", selector =dict(type="table"))
+tabla2.update_traces(cells_fill_color = 'rgba(227,227,227,0.5)', selector =dict(type="table"))
 tabla2.update_traces(hoverlabel_namelength=80, selector=dict(type='table'))
+tabla2.update_traces(cells_line_color= "#e3e3e3", selector=dict(type='table'))
 
-
+tabla2.update_layout(paper_bgcolor='rgba(227,227,227,0.5)', #color de fondo
+                    plot_bgcolor='rgba(227,227,227,0.5)',
+                   #line_color = 'rgba(227,227,227,0.5)',
+                    )
 
 
 
@@ -252,7 +268,7 @@ tabla2.update_traces(hoverlabel_namelength=80, selector=dict(type='table'))
 
 mytitle='Añadir graficas'
 tabtitle='Prueba Dash!'
-githublink='https://github.com/Aeelen-Miranda/exercises_pythoncitos/blob/master/app.py'
+githublink='https://github.com/Aeelen/exercises_pythoncitos/'
 sourceurl='https://plotly.com/python/histograms/'
 
 
@@ -260,7 +276,8 @@ sourceurl='https://plotly.com/python/histograms/'
 app = dash.Dash()
 colors = {
     'background': '#e3e3e3',
-    'text': '#b38115'
+    'text': '#b38115',
+    'table': 'rgba(227,227,227,0.5)'
 }
 
 server = app.server
@@ -322,8 +339,23 @@ app.layout = html.Div(children=[
                     ),
 
 
+
+############################################################  Grafica contagios
+    
+    
+    html.Div( children = [dcc.Graph(figure=figaro)],                   ####big grap contagios
+             style = {'margin': '2% 0px 0px 100px', 'width':'95%',
+                     'font-family': 'Montserrat', 
+                     #'fontColor': 'goldenrod' #Cambia tipo de letra
+                    }),
+
+        
+    
+        
+    
 ############################################################   resumen 2
 
+    
  # Segunda franja
     
     html.Div(children = [dcc.Graph(figure=grafica9)],
@@ -451,42 +483,16 @@ app.layout = html.Div(children=[
 
 #############################################################  Tabla 1
 
-    html.Div(children = [dcc.Graph(style={'backgroundColor': colors['background']},
-                    figure=tabla2)],
-             style={'margin': '0% 120px 0px 0px', 'width':'100%',
-                   'font-family': 'Montserrat',
-                    #paper_bgcolor='black',
-                    #plot_bgcolor='black',
-                   'backgroundColor': colors['background']}),
+    html.Div(children = [dcc.Graph(figure=tabla2)],
+             style={'width':'100%','font-family': 'Montserrat'}),
 
 #############################################################      
-    
-    
-    
-    
-#    html.A(" "),
-#    html.Br(),
-#    html.A(""),
-#    html.Br(),
+
   
-#    html.A('Code on Github', href=githublink),
-#    html.Br(),
-#    html.A('Data Source', href=sourceurl),
-#    html.I("Con la I se agrega texto!!",
-#    style={'color': '#C0C0C0','font-family': 'Montserrat',"size" :  "1000"}),
-#    dcc.Markdown('''
-#
-#
-#### Otra manera de agregar texto
-#
-#Agregar un link: [Markdown](http://commonmark.org/help).
+    html.A('Code on Github', href=githublink),
+    html.Br(),
+    html.A('Data Source', href=sourceurl),
 
-#Escritura normal.
-# **Negritas** y *Cursiva*,
-#[links](http://commonmark.org/help),  `cambiar tipo de letra` 
-
-#''', style={'color': '#C0C0C0'}),
-    #html.Div([html.P('Dash converts Python classes into HTML'),
 ],style={'display': 'flex','flex-direction': 'row','flex-wrap': 'wrap','overflow': 'hidden',
         'font-family': 'Montserrat','backgroundColor': colors['background']}, #Color de fondo dash
                      # dark=True,
