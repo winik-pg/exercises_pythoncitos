@@ -709,18 +709,18 @@ app.layout = html.Div(children=[
              # para celular
                     #'margin': '-18% 0px 0% 55px', 'width':'100%',  #margen: arriba,derecha,abajo,izquierda
              # para web 
-                    'margin': '-10.6% 0px 0% 0px', 'width':'100%',                                                                                   
+                    'margin': '-5.6% 0px 0% 0px', 'width':'100%',                                                                                   
                     'font-family': 'Montserrat'}),
                    
 # Quinta franja (Gráfica de Contagios y Deccesos)  
 ####### W19.18022021.7    
     html.Div( children = [dcc.Graph(figure=g10edosc)],                 
-             style = {'margin': '-20% 0px 0px 0px', 'width':'50%',
+             style = {'margin': '-10% 0px 0px 0px', 'width':'50%',
                      'font-family': 'Montserrat', 
                      #'fontColor': 'goldenrod' #Cambia tipo de letra
                     }),
     html.Div( children = [dcc.Graph(figure=g10edosd)],                  
-             style = {'margin': '-20% 0px 0px 0px', 'width':'50%',
+             style = {'margin': '-10% 0px 0px 0px', 'width':'50%',
                      'font-family': 'Montserrat', 
                      #'fontColor': 'goldenrod' #Cambia tipo de letra
                     }),
@@ -749,7 +749,7 @@ app.layout = html.Div(children=[
     }),
     
     html.Div(children = [dcc.Graph(figure=tabla8a)],
-             style={'margin': '-25% 0px 0% 55px', 'width':'100%',                                                                        
+             style={'margin': '-20% 0px 0% 55px', 'width':'100%',                                                                        
                     'font-family': 'Montserrat'}),
 ####### W19.18022021.8 
     
