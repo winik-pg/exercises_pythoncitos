@@ -745,7 +745,7 @@ app.layout = html.Div(children=[
                   'textAlign': 'center',
                   'font-family': 'Montserrat',
                   'color': 'brown',
-                  'margin': '-20% 0px 0% 0px', 'width':'100%',  
+                  'margin': '-15% 0px 0% 0px', 'width':'100%',  
     }),
     
     html.Div(children = [dcc.Graph(figure=tabla8a)],
